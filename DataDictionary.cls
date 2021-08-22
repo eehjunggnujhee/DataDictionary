@@ -89,10 +89,10 @@ for(String sObjName : sObjectTypes){
 // LOOP 1-2-1-1
                     for(Schema.PicklistEntry picklist : tmptField.getPicklistValues()){
                         
-                        values.add(picklist.getLabel().replaceAll(',',' '));
+                        values.add(picklist.getLabel());
                     }
                         if(values != null) {
-                            value = String.join(values,' | ');
+                            value = String.join(values,' | ').escapeCsv();
                         }
                     csvStr += value + ',';
                 }else{

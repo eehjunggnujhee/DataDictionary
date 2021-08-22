@@ -81,6 +81,7 @@ Account,Amount_Until_Next_Tier__c,Amount Until Next Tier,CURRENCY,0,18,0,0,null,
           )
      )
 )",,Amount_Until_Next_Tier__c,null,Formula (Currency),TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,2021-08-07 23:24:48,null
+Account,Comma_Picklist__c,Comma Picklist,PICKLIST,255,0,765,0,null,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,null,null,null,"<$1,000 | $1,000 - <$2,500 | $2,500 - <$5,000 | $5,000 - <$10,000",Comma_Picklist__c,null,Picklist,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,2021-08-22 21:24:45,null
 Opportunity,Id,Opportunity ID,ID,18,0,18,0,null,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,null,null,null,,Id,null,Lookup(),FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,null,null
 Opportunity,IsDeleted,Deleted,BOOLEAN,0,0,0,0,null,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,null,null,,IsDeleted,null,Checkbox,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,null,null
 Opportunity,AccountId,Account ID,REFERENCE,18,0,18,0,Account,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,null,null,null,,AccountId,null,Lookup(Account),TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,null,null
