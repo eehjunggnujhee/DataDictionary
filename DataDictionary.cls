@@ -1,9 +1,10 @@
 /* ============================================================================================
-@authror twitter handle @reality_jung
+@author @reality_jung
 @instruction
     Copy and paste the entire code into the anonymous window and run
     Open "Files" tab and find the CSV file named, <Timestamp> - DataDictionary.csv
     ',' will be removed from Label, Description, Formula, Help Text, and Picklist Values
+@credits Thanks for trailblazers who provided warm advices to improve the code.
 =============================================================================================== */
 /* ============================================================================================
     1. Setup a string array of sObject 
