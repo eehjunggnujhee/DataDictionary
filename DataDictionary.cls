@@ -60,7 +60,7 @@ for(String sObjName : sObjectTypes){
                 DescribeFieldResult tmptField = fieldMap.get(fieldName).getDescribe();
                 csvStr += sObjectName+','
                     + tmptField.getSObjectField() +','
-                    + tmptField.getLabel().replaceAll(',',' ') + ','
+                    + tmptField.getLabel().escapeCsv() + ','
                     + tmptField.getType() + ','
                     + tmptField.getLength() + ','
                     + tmptField.getPrecision() + ','
