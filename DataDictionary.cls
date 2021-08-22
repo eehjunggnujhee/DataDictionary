@@ -6,7 +6,7 @@
     ',' will be removed from Label, Description, Formula, Help Text, and Picklist Values
 =============================================================================================== */
 /* ============================================================================================
-    1. Setup an array of sObject 
+    1. Setup a string array of sObject 
     2. Build a string for database.query into FieldDefinition
     3. Setup CSV file header columns
 =============================================================================================== */
@@ -57,50 +57,54 @@ for(String sObjName : sObjectTypes){
         if(sObjectName == sObjName){ // gaurantees processing same object from the query and the schema metatdata from DescribeSobjectResult
 // LOOP 1-2-1            
             for(String fieldName : fieldNames) {
+                DescribeFieldResult tmptField = fieldMap.get(fieldName).getDescribe();
                 csvStr += sObjectName+','
-                    + fieldMap.get(fieldName).getDescribe().getSObjectField() +','
-                    + fieldMap.get(fieldName).getDescribe().getLabel().replaceAll(',',' ') + ','
-                    + fieldMap.get(fieldName).getDescribe().getType() + ','
-                    + fieldMap.get(fieldName).getDescribe().getLength() + ','
-                    + fieldMap.get(fieldName).getDescribe().getPrecision() + ','
-                    + fieldMap.get(fieldName).getDescribe().getByteLength() + ','
-                    + fieldMap.get(fieldName).getDescribe().getDigits() + ','
-                    + fieldMap.get(fieldName).getDescribe().getRelationshipName() + ','
-                    + fieldMap.get(fieldName).getDescribe().isCalculated() + ','
-                    + fieldMap.get(fieldName).getDescribe().isCustom() + ','
-                    + fieldMap.get(fieldName).getDescribe().isDependentPicklist() + ','
-                    + fieldMap.get(fieldName).getDescribe().isRestrictedPicklist() + ','
-                    + fieldMap.get(fieldName).getDescribe().isExternalID() + ','
-                    + fieldMap.get(fieldName).getDescribe().isFormulaTreatNullNumberAsZero() + ','
-                    + fieldMap.get(fieldName).getDescribe().isUnique() + ','
-                    + fieldMap.get(fieldName).getDescribe().isSearchPrefilterable() + ','
-                    + fieldMap.get(fieldName).getDescribe().getDefaultValue() + ','
-                    + fieldMap.get(fieldName).getDescribe().getInlineHelpText()?.replaceAll('(\r\n|\r|\n)','').replaceAll(',','') +','; // Safe Navigator Operator
+                    + tmptField.getSObjectField() +','
+                    + tmptField.getLabel().replaceAll(',',' ') + ','
+                    + tmptField.getType() + ','
+                    + tmptField.getLength() + ','
+                    + tmptField.getPrecision() + ','
+                    + tmptField.getByteLength() + ','
+                    + tmptField.getDigits() + ','
+                    + tmptField.getRelationshipName() + ','
+                    + tmptField.isCalculated() + ','
+                    + tmptField.isCustom() + ','
+                    + tmptField.isDependentPicklist() + ','
+                    + tmptField.isRestrictedPicklist() + ','
+                    + tmptField.isExternalID() + ','
+                    + tmptField.isFormulaTreatNullNumberAsZero() + ','
+                    + tmptField.isUnique() + ','
+                    + tmptField.isSearchPrefilterable() + ','
+                    + tmptField.getDefaultValue() + ','
+                    + tmptField.getInlineHelpText()?.escapeCsv() +','; // Safe Navigator Operator
     
-                if(fieldMap.get(fieldName).getDescribe().getCalculatedFormula()!=null){ // prevents dereference error
-                    csvStr += fieldMap.get(fieldName).getDescribe().getCalculatedFormula().replaceAll('(\\s*|\r\n|\r|\n)','').replaceAll(',','')+','; 
+                if(tmptField.getCalculatedFormula()!=null){ // prevents dereference error
+                    csvStr += tmptField.getCalculatedFormula().escapeCsv()+','; 
                 }else{
-                   csvStr += fieldMap.get(fieldName).getDescribe().getCalculatedFormula()+',';
+                   csvStr += tmptField.getCalculatedFormula()+',';
                 }
-                if(fieldMap.get(fieldName).getDescribe().getPicklistValues()!=null){ // get a list of pickvalues' labels from Schema.PicklistEntry
-                    String values ='';
+                if(tmptField.getPicklistValues()!=null){ // get a list of pickvalues' labels from Schema.PicklistEntry
+                    String[] values = new String[]{};
+                    String value = '';
 // LOOP 1-2-1-1
-                    for(Schema.PicklistEntry picklist : FieldMap.get(fieldName).getDescribe().getPicklistValues()){
+                    for(Schema.PicklistEntry picklist : tmptField.getPicklistValues()){
                         
-                        values += picklist.getLabel().replaceAll(',',' ') + ' | ';
+                        values.add(picklist.getLabel().replaceAll(',',' '));
                     }
-                    values = values?.removeEnd(' | ');
-                    csvStr += values + ',';
+                        if(values != null) {
+                            value = String.join(values,' | ');
+                        }
+                    csvStr += value + ',';
                 }else{
                     csvStr += ''+',';
                 }
                 
-                sObject o = fieldNameObject.get(fieldName); // initialize sObject 0 
+                sObject o = fieldNameObject.get(fieldName); // initialize sObject o 
                 
                 if(o != null){ 
                     csvStr += (String)o.get('QualifiedApiName') + ','
-                    + ((String)o.get('Description'))?.replaceAll('(\r\n|\r|\n)','').replaceAll(',','') + ','
-                    + ((String)o.get('DataType')).replaceAll('(\\s*|\r\n|\r|\n)','').replaceAll(',','') + ','
+                    + ((String)o.get('Description'))?.escapeCsv() + ','
+                    + ((String)o.get('DataType')).escapeCsv() + ','
                     + o.get('IsCompactLayoutable') + ','
                     + o.get('IsCompound')+ ','
                     + o.get('IsFieldHistoryTracked')+ ','
