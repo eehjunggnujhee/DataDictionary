@@ -21,4 +21,4 @@ The simple apex script to generate Salesforce data dictionary was born from a pe
 - Extract a set of five sObjects at a time for sObject containing less than 200 fields. Cut down the number of sObject per transaction if each sObject contains more than 300+ fields and you do not love LOADING........1%...2%..3%. You get the idea.
 
 ### Disclaimer
-- I did not include every info from the field definition. Let me know if any field metadata I should include. 
+- I did not include every info from the field definition.
