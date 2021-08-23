@@ -15,7 +15,9 @@ The simple apex script to generate Salesforce data dictionary was born from a pe
 
 ## MODIFICATION
 
-`String[] sObjectTypes = new String[]{'Account','Contact','Lead','Opportunity','Campaign','CampaignMember'};`
+``` apex
+String[] sObjectTypes = new String[]{'Account','Contact','Lead','Opportunity','Campaign','CampaignMember'};
+```
 
 - Replace the existing string values (ex. 'Account') of the **sObjectTypes** array to the API Names of sObjects you wish to retrieve.
 - Extract a set of five sObjects at a time for sObject containing less than 200 fields. Cut down the number of sObject per transaction if each sObject contains more than 300+ fields and you do not love LOADING........1%...2%..3%. You get the idea.
