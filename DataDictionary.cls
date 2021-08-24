@@ -136,8 +136,8 @@ blob csvBlob = Blob.valueOf(csvStr); // convert String to binary data
 
 ContentVersion conVer = new ContentVersion();
 conVer.Origin = 'C'; // Content document from the user's personal library
-conVer.PathOnClient = System.Now().format() +'- DataDictionary.csv'; // Set the file name with the extension; will use in preview
-conVer.Title = 'Data Dictionary - '+System.Now().format(); // Display name of the file
+conVer.PathOnClient = System.Now().format() +' - DataDictionary.csv'; // Set the file name with the extension; will use in preview
+conVer.Title = 'Data Dictionary - ' + String.join(sObjectTypes,'-')+ ' - ' +System.Now().format(); // Display name of the file
 conVer.VersionData = csvBlob; // based on base64 encoded
 
 INSERT conVer;    //Insert ContentVersion 
