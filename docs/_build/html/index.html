@@ -34,9 +34,8 @@
   <section id="generate-data-dictionary-with-apex">
 <h1>Generate Data Dictionary with Apex<a class="headerlink" href="#generate-data-dictionary-with-apex" title="Permalink to this headline">¶</a></h1>
 <p>The simple apex script to generate Salesforce data dictionary was born from a personal need to make the workflow as simple as one-click. The code is meant to run in anonymous window inside of Salesforce developer console making the whole process ephemeral. Please do try this code in a sandbox or a dev org.</p>
-</section>
 <section id="run">
-<h1>RUN<a class="headerlink" href="#run" title="Permalink to this headline">¶</a></h1>
+<h2>RUN<a class="headerlink" href="#run" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Open Developer Console</p></li>
 <li><p>Open Anonymous Window</p></li>
@@ -50,20 +49,21 @@
 <p>—&gt; See the <a class="reference external" href="https://github.com/eehjunggnujhee/DataDictionary/blob/main/Data%20Dictionary%20-%208-21-2021,%2010-12%20PM.csv">output</a> from Salesforce dev org sample.</p>
 </section>
 <section id="modification">
-<h1># MODIFICATION<a class="headerlink" href="#modification" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">String[]</span> <span class="pre">sObjectTypes</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">String[]{'Account','Contact','Lead','Opportunity','Campaign','CampaignMember'};</span>
-<span class="pre">`</span></code></p>
+<h2>MODIFICATION<a class="headerlink" href="#modification" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="p">[]</span> <span class="n">sObjectTypes</span> <span class="o">=</span> <span class="n">new</span> <span class="n">String</span><span class="p">[]{</span><span class="s1">&#39;Account&#39;</span><span class="p">,</span><span class="s1">&#39;Contact&#39;</span><span class="p">,</span><span class="s1">&#39;Lead&#39;</span><span class="p">,</span><span class="s1">&#39;Opportunity&#39;</span><span class="p">,</span><span class="s1">&#39;Campaign&#39;</span><span class="p">,</span><span class="s1">&#39;CampaignMember&#39;</span><span class="p">};</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Replace the existing string values (ex. ‘Account’) of the <strong>sObjectTypes</strong> array to the API Names of sObjects you wish to retrieve.</p></li>
 <li><p>Extract a set of five sObjects at a time for sObject containing less than 200 fields. Cut down the number of sObject per transaction if each sObject contains more than 300+ fields and you do not love LOADING……..1%…2%..3%. You get the idea.</p></li>
 </ul>
-</section>
 <section id="notes">
-<h1>## Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h1>
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The final output does not include every info from the field definition.</p></li>
 </ul>
+</section>
+</section>
 </section>
 
 
