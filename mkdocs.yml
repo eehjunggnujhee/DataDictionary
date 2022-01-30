@@ -1,0 +1,9 @@
+site_name: Data Dictionary Anonymous Execution
+site_url: ""
+use_directory_urls: False
+theme: readthedocs
+repo_url: https://github.com/eehjunggnujhee/DataDictionary/
+nav:
+  - index.md
+extra_css:
+  - css/main.css
