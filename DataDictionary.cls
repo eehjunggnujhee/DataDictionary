@@ -49,7 +49,7 @@ for(String sObjName : sObjectTypes){
         fieldNameObject.put(fieldName,oneField);
         system.debug(fieldNameObject);
     }
-    sObjectType t = ((sObject)Type.forName('Schema',sObjName).newInstance()).getSObjectType();
+    sObjectType t = ((sObject)Type.forName('Schema.'+sObjName).newInstance()).getSObjectType();
     DescribeSobjectResult r = t.getDescribe();
     Map<String, Schema.SObjectField> fieldMap = r.fields.getMap();
     Set<String> fieldNames = fieldMap.keySet();
